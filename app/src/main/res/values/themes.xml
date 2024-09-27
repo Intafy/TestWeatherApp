@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.WeatherTestApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimaryVariant">@color/blue</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi ="l">?attr/colorPrimaryVariant</item>
+    </style>
+    <style name="Theme.WeatherTestApp" parent="Base.Theme.WeatherTestApp" />
+</resources>
