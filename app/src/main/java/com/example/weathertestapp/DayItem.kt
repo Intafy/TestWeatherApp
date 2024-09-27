@@ -8,8 +8,8 @@ data class DayItem(
     val imageUrl:String,
     val maxTemp:String,
     val minTemp:String,
-//    val humidity:String
-//    val windDirection:String,
-//    val windSpeed:String
+    val humidity:String,
+    val windDirection:String,
+    val windSpeed:String
 )
 

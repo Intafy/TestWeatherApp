@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvMinTemp" />
 
     <TextView
-        android:id="@+id/tvHumidateValue"
+        android:id="@+id/tvHumiditeValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -49,13 +49,13 @@
         android:id="@+id/tvMaxTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:text="@string/max_temp"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/tvHumidity"
         app:layout_constraintStart_toStartOf="@+id/tvHumidity"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvForecastDate" />
 
     <TextView
         android:id="@+id/tvMinTemp"
@@ -104,5 +104,39 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvMaxTemp"
         app:layout_constraintStart_toEndOf="@+id/tvMaxTemp"
         app:layout_constraintTop_toTopOf="@+id/tvMaxTemp" />
+
+    <ImageView
+        android:id="@+id/imForecastCondition"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTempMax"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTempMax" />
+
+    <TextView
+        android:id="@+id/tvForecastCondition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTempMin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTempMin" />
+
+    <TextView
+        android:id="@+id/tvForecastDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="start"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvHumidity"
+        app:layout_constraintStart_toStartOf="@+id/tvHumidity"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

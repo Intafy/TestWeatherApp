@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.weathertestapp.MainViewModel
-import com.example.weathertestapp.R
 import com.example.weathertestapp.databinding.FragmentTodayBinding
+import com.squareup.picasso.Picasso
 
 
 class AfterTomorrowFragment : Fragment() {
@@ -29,9 +29,13 @@ class AfterTomorrowFragment : Fragment() {
     private fun onUpdateInfo()=with(binding){
         model.liveDateList.observe(viewLifecycleOwner){
 
-            tvTempMax.text= it[2].maxTemp
-            tvTempMin.text=it[2].minTemp
-
+            tvForecastDate.text=it[2].time
+            tvForecastCondition.text=it[2].condition
+            Picasso.get().load("https:" +it[2].imageUrl).into(imForecastCondition)
+            tvTempMax.text= it[2].maxTemp+"°C"
+            tvTempMin.text=it[2].minTemp+"°C"
+            tvHumiditeValue.text=it[2].humidity + " %"
+            tvWindValue.text=it[2].windSpeed + " km/h"
         }
     }
 

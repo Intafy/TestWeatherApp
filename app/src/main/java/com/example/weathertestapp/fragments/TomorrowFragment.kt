@@ -10,6 +10,7 @@ import com.example.weathertestapp.MainViewModel
 import com.example.weathertestapp.R
 import com.example.weathertestapp.databinding.FragmentTodayBinding
 import com.example.weathertestapp.databinding.FragmentTomorrowBinding
+import com.squareup.picasso.Picasso
 
 class TomorrowFragment : Fragment() {
 private lateinit var binding: FragmentTodayBinding
@@ -31,8 +32,13 @@ private val model:MainViewModel by activityViewModels()
     private fun onUpdateInfo()=with(binding){
         model.liveDateList.observe(viewLifecycleOwner){
 
-            tvTempMax.text= it[1].maxTemp
-            tvTempMin.text=it[1].minTemp
+            tvForecastDate.text=it[1].time
+            tvForecastCondition.text=it[1].condition
+            Picasso.get().load("https:" +it[1].imageUrl).into(imForecastCondition)
+            tvTempMax.text= it[1].maxTemp+"°C"
+            tvTempMin.text=it[1].minTemp+"°C"
+            tvHumiditeValue.text=it[1].humidity + " %"
+            tvWindValue.text=it[1].windSpeed + " km/h"
 
         }
     }

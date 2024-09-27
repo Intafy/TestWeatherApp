@@ -87,9 +87,10 @@ class MainFragment : Fragment() {
             mainObject.getJSONObject("current").getString("temp_c")+"\u00B0"+"C",
             mainObject.getJSONObject("current").getJSONObject("condition").getString("icon"),
             weatherItem.maxTemp,
-            weatherItem.minTemp
-//            weatherItem.windDirection,
-//            weatherItem.windSpeed
+            weatherItem.minTemp,
+            "",
+            "",
+            ""
         )
         model.liveDateCurrent.value = item
 
@@ -118,10 +119,10 @@ class MainFragment : Fragment() {
                 "",
                 day.getJSONObject("day").getJSONObject("condition").getString("icon"),
                 day.getJSONObject("day").getString("maxtemp_c"),
-                day.getJSONObject("day").getString("mintemp_c")
-//                day.getJSONObject("day").getString("humidity"),
-//                day.getJSONObject("day").getString("wind_dir"),
-//                day.getJSONObject("day").getString("wind_kph")
+                day.getJSONObject("day").getString("mintemp_c"),
+                day.getJSONObject("day").getString("avghumidity"),
+                "WWWWW",
+                day.getJSONObject("day").getString("maxwind_kph")
             )
             list.add(item)
             model.liveDateList.value=list

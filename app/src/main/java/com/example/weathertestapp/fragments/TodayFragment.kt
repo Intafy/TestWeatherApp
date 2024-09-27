@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.weathertestapp.MainViewModel
-import com.example.weathertestapp.R
-import com.example.weathertestapp.databinding.FragmentMainBinding
 import com.example.weathertestapp.databinding.FragmentTodayBinding
+import com.squareup.picasso.Picasso
 
 class TodayFragment : Fragment() {
     private lateinit var binding: FragmentTodayBinding
@@ -23,12 +22,15 @@ class TodayFragment : Fragment() {
     }
 
     private fun onUpdateInfo()=with(binding){
-        model.liveDateCurrent.observe(viewLifecycleOwner){
-//        val wind=it.windDirection
-        tvTempMax.text= it.maxTemp+"°C"
-        tvTempMin.text=it.minTemp+"°C"
-//        tvHumidity.text=it.humidity
-//        tvWindValue.text=wind
+        model.liveDateList.observe(viewLifecycleOwner){
+
+        tvForecastDate.text=it[0].time
+        tvForecastCondition.text=it[0].condition
+        Picasso.get().load("https:" +it[0].imageUrl).into(imForecastCondition)
+        tvTempMax.text= it[0].maxTemp+"°C"
+        tvTempMin.text=it[0].minTemp+"°C"
+        tvHumiditeValue.text=it[0].humidity + " %"
+        tvWindValue.text=it[0].windSpeed + " km/h"
         }
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
