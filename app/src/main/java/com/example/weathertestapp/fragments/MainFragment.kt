@@ -6,15 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.weathertestapp.DayItem
 import com.example.weathertestapp.FragmentAdapter
 import com.example.weathertestapp.MainViewModel
+import com.example.weathertestapp.R
 import com.example.weathertestapp.databinding.FragmentMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
@@ -35,8 +36,7 @@ class MainFragment : Fragment() {
         "Послезавтра"
     )
     private val model:MainViewModel by activityViewModels()
-    private val city = "Saratov"
-
+    private var city = "Moscow"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +44,7 @@ class MainFragment : Fragment() {
     ): View {
         binding=FragmentMainBinding.inflate(inflater,container,false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,6 +52,15 @@ class MainFragment : Fragment() {
         init()
         onUpdateCurrentCard()
         onRequestWeatherData(city)
+        binding.ibSearch.setOnClickListener{
+
+            DialogManager.onSearchByNameDialog(requireContext(),object :DialogManager.Listener{
+                override fun onClick(name: String) {
+                  if(name!="") onRequestWeatherData(name)
+                  else Toast.makeText(context, R.string.empty_city_name,Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
 
     }
     private fun onRequestWeatherData(city:String){
@@ -68,6 +78,7 @@ class MainFragment : Fragment() {
             },{
                 error->
                 Log.d("MyLog","Error: $error")
+                Toast.makeText(context,R.string.error_city_name,Toast.LENGTH_SHORT).show()
             }
         )
         queue.add(request)
@@ -121,7 +132,7 @@ class MainFragment : Fragment() {
                 day.getJSONObject("day").getString("maxtemp_c"),
                 day.getJSONObject("day").getString("mintemp_c"),
                 day.getJSONObject("day").getString("avghumidity"),
-                "WWWWW",
+                "",
                 day.getJSONObject("day").getString("maxwind_kph")
             )
             list.add(item)
@@ -147,11 +158,11 @@ class MainFragment : Fragment() {
         tvCondition.text=it.condition
         tvMaxMin.text=maxMinTemp
         Picasso.get().load("https:" +it.imageUrl).into(imWeather)
-
         }
     }
 
     companion object {
         fun newInstance() = MainFragment()
     }
+
 }

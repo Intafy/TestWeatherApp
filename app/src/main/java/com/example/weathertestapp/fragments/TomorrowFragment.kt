@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.weathertestapp.MainViewModel
-import com.example.weathertestapp.R
 import com.example.weathertestapp.databinding.FragmentTodayBinding
-import com.example.weathertestapp.databinding.FragmentTomorrowBinding
 import com.squareup.picasso.Picasso
 
 class TomorrowFragment : Fragment() {
